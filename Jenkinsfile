@@ -33,12 +33,7 @@ pipeline {
                 }
             }
         }
-
-        stage('Artifact to S3') {
-            steps {
-                sh 'aws s3 cp /var/lib/jenkins/workspace/application-pipeline/target/calcwebapp.war s3://testing-sonar-bucket /'
-            }
-        }
+        
 
         stage('SonarQube Analysis') {
             steps {
