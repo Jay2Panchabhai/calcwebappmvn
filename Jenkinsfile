@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'maven1'
+        maven 'Maven1'
     }
 
     environment {
@@ -36,7 +36,7 @@ pipeline {
 
         stage('Artifact to S3') {
             steps {
-                sh 'aws s3 cp /var/lib/jenkins/workspace/application-pipeline/target/calcwebapp.war s3://mayur-s3-bucket-amazon-123456/'
+                sh 'aws s3 cp /var/lib/jenkins/workspace/application-pipeline/target/calcwebapp.war s3://testing-sonar-bucket /'
             }
         }
 
