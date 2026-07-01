@@ -70,6 +70,17 @@ pipeline {
             }
         }
 
+        stage('Docker build and push'){
+            steps{
+                sh'''
+                aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 730558614346.dkr.ecr.ap-south-1.amazonaws.com
+                docker build -t cal-webapps .
+                docker tag cal-webapps:latest 730558614346.dkr.ecr.ap-south-1.amazonaws.com/cal-webapps:latest
+                docker push 730558614346.dkr.ecr.ap-south-1.amazonaws.com/cal-webapps:latest
+                '''
+            }
+        }
+
     }
 }
 
