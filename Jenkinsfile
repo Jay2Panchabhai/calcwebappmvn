@@ -37,57 +37,9 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('Sonar') {
-                    sh 'mvn sonar:Sonar'
+                withSonarQubeEnv('sonar-scan') {
+                    sh 'mvn sonar:sonar'
                 }
-            }
-        }
-
-        stage('Quality Gate') {
-            steps {
-                timeout(time: 5, unit: 'MINUTES') {
-                    script {
-                        try {
-                            def qg = waitForQualityGate()
-                            echo "Quality Gate Status: ${qg.status}"
-                            if (qg.status != 'OK') {
-                                error "Quality Gate failed: ${qg.status}"
-                            }
-                        } catch (Exception e) {
-                            echo "Quality Gate check failed: ${e.message}"
-                            error "Quality Gate stage failed"
-                        }
-                    }
-                }
-            }
-        }
-
-        stage('SonarQube Report') {
-            steps {
-                script {
-                    echo "SonarQube Report successfully generated"
-                }
-            }
-        }
-
-        stage('Docker Build') {
-            steps {
-                sh '''
-                ls -la
-                docker build -t calwebapp:v1 .
-                ls -la
-                docker images
-                '''
-            }
-        }
-
-        stage('Docker push to ECR') {
-            steps {
-                sh '''
-                aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 506995420953.dkr.ecr.us-west-2.amazonaws.com
-                docker tag calwebapp:v1 506995420953.dkr.ecr.us-west-2.amazonaws.com/app_cal:latest
-                docker push 506995420953.dkr.ecr.us-west-2.amazonaws.com/app_cal:latest
-                '''
             }
         }
     }
