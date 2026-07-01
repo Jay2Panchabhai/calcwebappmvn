@@ -33,12 +33,12 @@ pipeline {
                 }
             }
         }
-        
+
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('sonar') {
-                    sh 'mvn sonar:sonar'
+                withSonarQubeEnv('Sonar') {
+                    sh 'mvn Sonar:Sonar'
                 }
             }
         }
