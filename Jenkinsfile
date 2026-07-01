@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Jay2Panchabhai/calcwebappmvn.git'
+                git branch: 'main', credentialsId: 'cal-pipeline', url: 'https://github.com/Jay2Panchabhai/calcwebappmvn.git'
                 echo 'clonning is successful'
             }
         }
