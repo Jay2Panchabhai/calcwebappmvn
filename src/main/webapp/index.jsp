@@ -5,7 +5,7 @@
 <body>
 <h2>Calculator</h2>
 	
-	<h3> this Build Triggered on 14-06-2026 website is updated!!!</h3>
+	<h3> this Build Triggered on 02-07-2026 website is updated!!!</h3>
 
 
 <%
