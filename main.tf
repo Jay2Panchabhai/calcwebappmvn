@@ -11,14 +11,14 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-2"
+  region = "ap-south-1"
 }
 data "aws_vpc" "default" { // Fetch default VPC
   default = true
 }
 variable "cluster_name" { // Variable for cluster name
   type    = string
-  default = "my-cluster-mayur"
+  default = "my-cluster-Jayy"
 
 }
 
