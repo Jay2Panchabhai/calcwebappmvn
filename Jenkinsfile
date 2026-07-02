@@ -81,6 +81,18 @@ pipeline {
             }
         }
 
+        stage('Deploy to EKS') {
+            steps {
+                sh '''
+                aws eks update-kubeconfig --name my-cluster-Jayy --region ap-south-1
+                kubectl apply -f calc-deployment-svc.yaml
+                kubectl get pods
+                sleep 30
+                kubectl get svc
+                '''
+            }
+        }
+
     }
 }
 

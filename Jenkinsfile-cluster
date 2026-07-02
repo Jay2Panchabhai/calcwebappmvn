@@ -6,7 +6,7 @@ pipeline {
     }
 
     tools {
-        terraform 'tf-install'
+        terraform 'terraform'
     }
     
     stages {
